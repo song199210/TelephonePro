@@ -19,3 +19,8 @@
 2. 长按详情页右上角删除图标能直接删除数据;
 
 # 效果图
+'''
+<video id="video" controls="" preload="none" poster="http://om2bks7xs.bkt.clouddn.com/2017-08-26-Markdown-Advance-Video.jpg">
+<source id="mp4" src="https://github.com/song199210/TelephonePro/edit/master/Screenrecording_20181206_132518.mp4" type="video/mp4">
+</video>
+'''

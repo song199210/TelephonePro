@@ -19,5 +19,5 @@
 2. 长按详情页右上角删除图标能直接删除数据;
 
 # 效果图
-![图片描述](https://github.com/song199210/TelephonePro/edit/master/Screenshot_2018_1206_134011.jpg)
+![图片描述](https://github.com/song199210/TelephonePro/blob/master/Screenshot_2018_1206_134011.jpg)
 ![图片描述](https://github.com/song199210/TelephonePro/edit/master/Screenshot_2018_1206_134024.jpg)

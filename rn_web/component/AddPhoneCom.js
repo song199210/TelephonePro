@@ -123,9 +123,12 @@ class AddPhoneCom extends React.PureComponent {
             return false;
         }
         if(obj['phone'] == ""){
-            ToastAndroid.show("联系人姓名不能为空!",ToastAndroid.SHORT);
+            ToastAndroid.show("电话号码不能为空!",ToastAndroid.SHORT);
             return false;
-        }
+        }else if(!(/^1(3|4|5|7|8)\d{9}$/.test(obj['phone']))){ 
+            ToastAndroid.show("手机号码有误，请重填!",ToastAndroid.SHORT);
+            return false; 
+        } 
         async function addPhoneUserList(){//新增数据
             const id=_that.getPhoneId();
             obj['id']=id;
@@ -200,6 +203,7 @@ class AddPhoneCom extends React.PureComponent {
                     <TextInput
                     style={styles.FormControl}
                     defaultValue={this.state.phone}
+                    keyboardType='numeric'
                     onChangeText={(text)=>{this.setState({phone:text})}}
                     placeholder="手机号码"/>
                 </View>

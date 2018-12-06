@@ -11,7 +11,11 @@
 
 # 使用
 1. 通过cnpm install -g react-native-cli安装React Native脚手架工具;
-2. cnpm instal或yarn add进行package.json配置文件中的模块进行安装;
+2. cnpm instal或yarn install进行package.json配置文件中的模块进行安装;
 3. react-native run-android进行项目启动;
+
+# 注意
+1. 需要长按电话列表才能进入编辑功能;
+2. 长按详情页右上角删除图标能直接删除数据;
 
 # 效果图

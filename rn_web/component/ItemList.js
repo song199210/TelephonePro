@@ -49,14 +49,26 @@ class ItemList extends React.Component {
         var ItemCom=null;
         var isType="0";//0表示图文,1表示列表
         var _that=this;
+        var imgUserCom=null;
+        if(this.props.imgbasestr == "" || this.props.imgbasestr == undefined){
+            imgUserCom=(
+                <View  style={{borderWidth:1,borderColor:"#ddd",flex:1,
+                justifyContent: 'center',
+                textAlignVertical:"center",
+                alignItems: 'center'}}>
+                    <Text style={{fontSize:24}}>暂无头像</Text>
+                </View>);
+        }else{
+            imgUserCom=(
+                <Image style={styles.imageStyle}
+                source={{uri:this.props.imgbasestr}}/>
+            );
+        }
         if(isType == "0"){
             const phoneStr=this.props.phone;
             ItemCom=(
                     <View style={{flex:1}}>
-                        <View style={styles.imageItemStyle}>
-                            <Image style={styles.imageStyle}
-                            source={{uri:this.props.imgbasestr}}/>
-                        </View>
+                        <View style={styles.imageItemStyle}>{imgUserCom}</View>
                         <View style={styles.textItemStyle}>
                             <View style={styles.textGroup}>
                                 <Text style={styles.textTitleStyle}>{this.props.name}</Text>

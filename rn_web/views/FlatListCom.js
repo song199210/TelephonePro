@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {ScrollView,FlatList,Text,Button,View,StyleSheet} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import ItemList from "./ItemList";
+import ItemListCom from "../component/ItemList";
 import {dataJson} from "../assets/data";
 import {DecorateM} from "../assets/common";
 import SplashScreen from 'react-native-splash-screen';
@@ -53,7 +53,7 @@ class FlatListCom extends React.PureComponent {
     }
     _renderItem({item}){//渲染列表
         return (
-            <ItemList
+            <ItemListCom
             key={item.id}
             id={item.id}
             imgbasestr={item.imgstr}

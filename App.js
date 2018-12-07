@@ -8,8 +8,8 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import FlatListCom from "./rn_web/component/FlatListCom";
-import AddPhoneCom from "./rn_web/component/AddPhoneCom";
+import FlatListCom from "./rn_web/views/FlatListCom";
+import AddPhoneCom from "./rn_web/views/AddPhoneCom";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import {storage} from "./rn_web/assets/store";
 

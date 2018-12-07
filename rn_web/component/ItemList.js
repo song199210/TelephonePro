@@ -19,7 +19,7 @@ let modules=null;
 if(Platform.OS == "android"){
     modules =NativeModules.CallPhoneModule;
 }
-class ItemList extends React.Component {
+class ItemListCom extends React.Component {
     constructor(props){
         super(props);
         this._onPress=this._onPress.bind(this);
@@ -166,4 +166,4 @@ const styles=StyleSheet.create({
     }
 });
 
-export default ItemList;
+export default ItemListCom;

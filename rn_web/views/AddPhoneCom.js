@@ -1,21 +1,11 @@
 import React from "react";
-import {View,Text,TextInput,StyleSheet,Switch,Button,TouchableOpacity,Dimensions,Image,ToastAndroid} from "react-native";
+import {View,Text,TextInput,StyleSheet,Switch,Button,Image,ToastAndroid} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import SYImagePicker from 'react-native-syan-image-picker';
-// import SQLite from "../assets/sqlite";
 import {DecorateM} from "../assets/common";
+import ImgPickerCom from "../component/ImagePicker";
 
 const UserIcon = (<Icon name='user' size={20} color="#999" />);
 const PhoneIcon = (<Icon name="phone" size={20} color="#999" />);
-const UploadIcon = (<Icon name="upload" size={60} color="#999" />);
-const pickerOptions={
-    isCamera:false,
-    imageCount: 1, 
-    isRecordSelected: true,
-    CropH:160,
-    isCrop:true,
-    enableBase64:true
-};
 
 // const sqliteObj=new SQLite();
 class AddPhoneCom extends React.PureComponent {
@@ -29,7 +19,6 @@ class AddPhoneCom extends React.PureComponent {
             phone:"",  //联系人手机
             imgstr:"" //联系人头像
         }
-        this.selectPicker=this.selectPicker.bind(this);
         this.saveDataJson=this.saveDataJson.bind(this);
         this.delPhoeData=this.delPhoeData.bind(this);
         this.getPhoneId=this.getPhoneId.bind(this);
@@ -76,19 +65,7 @@ class AddPhoneCom extends React.PureComponent {
             }
         }
     };
-    selectPicker(){
-        SYImagePicker.asyncShowImagePicker(pickerOptions)
-        .then(photos => {
-          // 选择成功
-          this.setState({
-            imgstr:photos[0]['base64']
-          })
-        })
-        .catch(err => {
-          // 取消选择，err.message为"取消"
-        });  
-    }
-    getPhoneId(){//获取手机ID
+    getPhoneId(){//获取自定义ID
         var arr=['a','b','c','d','e','f','g','h','m','n'];
         return (new Date().getTime().toString()+(arr.slice(0,parseInt(Math.random()*10)).join("")));
     }
@@ -164,30 +141,15 @@ class AddPhoneCom extends React.PureComponent {
         }else{
             updatePhoneUserList();
         }
-        // if(obj['imgstr'] == ""){
-        //     ToastAndroid.show("联系人姓名不能为空!",ToastAndroid.SHORT);
-        //     return false;
-        // }
+    }
+    ImgPickerSuccess(baseStr){//图片裁剪成功
+        this.setState({
+            imgstr:baseStr
+        })
     }
     render(){
         let pickerImgCom=null;
-        const baseObj={uri:this.state.imgstr};
-        if(this.state.imgstr == ""){
-            pickerImgCom=(
-                <TouchableOpacity onPress={this.selectPicker}>
-                    <View style={styles.uIcon}>{UploadIcon}</View>
-                    <Text style={styles.uploadText}>图片上传</Text>
-                </TouchableOpacity>
-            );
-        }else{
-            pickerImgCom=(
-                <TouchableOpacity style={styles.ImageItemStyles} onPress={this.selectPicker}>
-                    <Image
-                    style={styles.showPickerImg}
-                    source={baseObj}/>
-                </TouchableOpacity>
-            );
-        }
+        const basestr=this.state.imgstr;
         return (
             <View style={styles.addPhoneBox}>
                 <View style={[styles.InputGroup,{marginTop:12}]}>
@@ -215,7 +177,7 @@ class AddPhoneCom extends React.PureComponent {
                     <Text>是否开启图文展示</Text>
                 </View> */}
                 <View style={styles.ImagePicker}>
-                    {pickerImgCom}
+                    <ImgPickerCom imgstr={basestr} onSuccess={this.ImgPickerSuccess.bind(this)} />
                 </View>
                 <View style={styles.BtnGroup}>
                     <Button
@@ -252,15 +214,6 @@ const styles=StyleSheet.create({
         textAlignVertical:"center",
         alignItems: 'center',
         marginBottom:10
-    },
-    ImageItemStyles:{
-        width:Dimensions.get('window').width-12,
-        flex:1
-    },
-    showPickerImg:{
-        resizeMode:'cover',
-        width:Dimensions.get('window').width-12,
-        height:180
     },
     icons:{
         width:40,
